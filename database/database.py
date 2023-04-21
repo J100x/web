@@ -74,11 +74,12 @@ def reset_history_user(user: str):
         )
 
 
-def create_question_prompt(row: Dict, question: str) -> Dict:
-    history = json.loads(row[1])
-    rule = {"role": "user", "content": question}
-    history.append(rule)
-    return history
+def create_question_prompt(row, question):
+    if isinstance(row, tuple) and len(row) > 1 and row[1] is not None:
+        history = json.loads(row[1])
+        # rest of the function code
+    else:
+        # handle the case when row is None or row[1] is None
 
 
 def update_history_user(user: str, question: str, answer: str):
